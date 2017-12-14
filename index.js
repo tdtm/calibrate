@@ -25,11 +25,15 @@ internals.calibrate = module.exports = (data, meta, options) => {
  */
 internals.error = module.exports.error = err => {
 
+  if (err instanceof Error) {
     if (err.isBoom) {
-        return err;
+      return err;
     }
 
-    return Boom.badImplementation(err);
+    return Boom.badImplementation(null, err)
+  }
+
+  return Boom.badImplementation(err);
 }
 
 /**
