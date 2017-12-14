@@ -50,8 +50,8 @@ internals.response = module.exports.response = (data, meta = {}, options = {}) =
         };
     }
 
-    const context = options.context || '';
-    const returnString = (options.return_string || options.returnString) || `The ${context} resource with that ID does not exist or has already been deleted.`;
+    const context = options.context ? `${options.context} ` : '';
+    const returnString = (options.return_string || options.returnString) || `The ${context}resource with that ID does not exist or has already been deleted.`;
 
     return Boom.notFound(returnString);
 }
