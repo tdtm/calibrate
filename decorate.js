@@ -1,18 +1,16 @@
-'use strict';
+const Calibrate = require('./index')
 
-const Calibrate = require('./index');
+module.exports = (server, options, next) => {
 
-module.exports = function (server, options, next) {
+  const decorator = function (res, _meta, _options) {
+    return this.response(Calibrate(res, _meta, _options));
+  }
 
-    const decorator = function (res, _meta, _options){
+  server.decorate('reply', 'calibrate', decorator);
 
-        return this.response(Calibrate(res, _meta, _options));
-    };
-    server.decorate('reply', 'calibrate', decorator);
-
-    next();
-};
+  next()
+}
 
 module.exports.attributes = {
-    pkg: require('./package.json')
-};
+  pkg: require('./package.json')
+}

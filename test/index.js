@@ -1,5 +1,3 @@
-'use strict';
-
 const Code = require('code');
 const Lab = require('lab');
 const Calibrate = require('../index.js');
@@ -124,8 +122,7 @@ describe('Calibrate', () => {
                 method: 'GET',
                 path: '/',
                 config: {
-                    handler: function (response, reply) {
-
+                    handler(response, reply) {
                         reply.calibrate({ message: 'test' });
                     }
                 }
